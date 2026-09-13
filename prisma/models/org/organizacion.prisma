@@ -1,0 +1,14 @@
+model Organizacion {
+  id         String    @id @default(uuid())
+  name       String
+  slug       String    @unique
+  is_active  Boolean   @default(true)
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+
+  users User[]
+  tasks Task[]
+
+  @@map("Organizacion")
+}

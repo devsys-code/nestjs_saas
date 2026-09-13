@@ -1,0 +1,9 @@
+model TokenBlacklist {
+  id         String   @id @default(uuid())
+  jti        String   @unique
+  user_id    String
+  expired_at DateTime
+  created_at DateTime @default(now())
+
+  @@map("TokenBlacklist")
+}

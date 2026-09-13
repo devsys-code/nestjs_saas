@@ -1,0 +1,21 @@
+model Task {
+  id              String     @id @default(uuid())
+  organizacion_id String
+  title           String
+  description     String?
+  status          TaskStatus @default(red)
+  is_active       Boolean    @default(true)
+  created_at      DateTime   @default(now())
+  updated_at      DateTime   @updatedAt
+  deleted_at      DateTime?
+
+  organizacion Organizacion @relation(fields: [organizacion_id], references: [id])
+
+  @@map("Task")
+}
+
+enum TaskStatus {
+  red
+  yellow
+  green
+}

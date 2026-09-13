@@ -1,0 +1,12 @@
+model RefreshToken {
+  id         String   @id @default(uuid())
+  jti        String   @unique
+  user_id    String
+  expires_at DateTime
+  replaced_by String?
+  revoked    Boolean  @default(false)
+  created_at DateTime @default(now())
+
+  @@map("RefreshToken")
+  @@index([expires_at], name: "idx_refreshtoken_expires_at")
+}

@@ -1,0 +1,17 @@
+model User {
+  id              String    @id @default(uuid())
+  organizacion_id String
+  email           String
+  name            String
+  password        String
+  role            String    @default("member")
+  is_active       Boolean   @default(true)
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @updatedAt
+  deleted_at      DateTime?
+
+  organizacion Organizacion @relation(fields: [organizacion_id], references: [id])
+
+  @@unique([organizacion_id, email])
+  @@map("User")
+}
